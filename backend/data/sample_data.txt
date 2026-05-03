@@ -1,0 +1,117 @@
+================================================================
+  CYBERSHIELD — SAMPLE TEST DATA
+  Use these values in the Dashboard to test prediction results.
+  Copy the field values into the corresponding input boxes.
+================================================================
+
+
+================================================================
+  SCENARIO 1: HIGH RISK — DDoS RST/FIN Flood
+  Expected Prediction : DDoS (Critical Risk, Score: ~92/100)
+  Description         : Simulates a Distributed Denial of Service
+                        attack using TCP RST and FIN packet floods
+                        to exhaust the target's connection tables.
+================================================================
+
+  flow_duration     : 8500
+  Header_Length     : 40
+  Protocol Type     : 6
+  Duration          : 9000
+  Rate              : 5800
+  Srate             : 2900
+  fin_flag_number   : 25
+  Std               : 0.04
+  Tot size          : 320000
+  IAT               : 2
+  Magnitue          : 18.5
+  Radius            : 9.2
+  Weight            : 3.1
+
+  What to expect:
+  - Risk Score Gauge   → 88–95 (Critical zone, red arc)
+  - Risk Factors       → High packet rate, excessive FIN flags,
+                         large payload size flagged
+  - Prevention Steps   → Rate limiting, SYN cookies, CDN scrubbing
+  - AI Recommendations → DDoS-specific Gemini mitigation advice
+
+
+================================================================
+  SCENARIO 2: MEDIUM RISK — Port Scan / Reconnaissance
+  Expected Prediction : PortScan (Medium Risk, Score: ~55/100)
+  Description         : Simulates network reconnaissance where an
+                        attacker systematically probes ports to
+                        discover open services on the target host.
+================================================================
+
+  flow_duration     : 1200
+  Header_Length     : 20
+  Protocol Type     : 6
+  Duration          : 1500
+  Rate              : 320
+  Srate             : 160
+  fin_flag_number   : 4
+  Std               : 1.10
+  Tot size          : 3200
+  IAT               : 45
+  Magnitue          : 5.2
+  Radius            : 2.6
+  Weight            : 1.0
+
+  What to expect:
+  - Risk Score Gauge   → 50–60 (Medium zone, amber/yellow arc)
+  - Risk Factors       → ML-classified port scan pattern
+  - Prevention Steps   → Firewall hardening, IDS rules,
+                         network segmentation, honeypots
+  - AI Recommendations → Reconnaissance-specific advice
+
+
+================================================================
+  SCENARIO 3: NORMAL / BENIGN — Clean Network Traffic
+  Expected Prediction : Benign (Minimal Risk, Score: ~5/100)
+  Description         : Simulates normal, legitimate web browsing
+                        or internal business traffic with expected
+                        flow characteristics and no anomalies.
+================================================================
+
+  flow_duration     : 64
+  Header_Length     : 54
+  Protocol Type     : 6
+  Duration          : 120
+  Rate              : 0.33
+  Srate             : 0.33
+  fin_flag_number   : 1
+  Std               : 0.0
+  Tot size          : 54
+  IAT               : 1200
+  Magnitue          : 3.5
+  Radius            : 1.8
+  Weight            : 0.8
+
+  What to expect:
+  - Risk Score Gauge   → 0–10 (Low zone, green arc)
+  - Risk Factors       → Normal traffic pattern (no anomalies)
+  - Prevention Steps   → Continue monitoring, patch schedule
+  - AI Recommendations → Baseline security hygiene advice
+
+
+================================================================
+  FIELD REFERENCE GUIDE
+================================================================
+
+  flow_duration    Duration of the network flow in milliseconds
+  Header_Length    IP/TCP header length in bytes
+  Protocol Type    IP protocol number (6=TCP, 17=UDP, 1=ICMP)
+  Duration         Total connection duration in milliseconds
+  Rate             Total packet rate (packets per second)
+  Srate            Source-to-destination packet rate (pps)
+  fin_flag_number  Count of TCP FIN flags observed in the flow
+  Std              Standard deviation of packet inter-arrival time
+  Tot size         Total payload size in bytes
+  IAT              Mean inter-arrival time between packets (ms)
+  Magnitue         Magnitude metric of flow (sqrt of src+dst bytes)
+  Radius           Radius metric (std dev of src+dst bytes)
+  Weight           Covariance weight metric of the flow
+
+================================================================
+  CyberShield — Powered by XGBoost + Google Gemini AI
+================================================================
