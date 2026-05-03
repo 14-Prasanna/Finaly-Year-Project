@@ -3,6 +3,9 @@
 
 pandas
 flask
+Flask-Cors
+Flask-Session
+gunicorn
 joblib
 secure-smtplib
 scikit-learn>=1.4.0
@@ -10,3 +13,5 @@ xgboost==1.6.0
 requests
 google-generativeai
 python-dotenv
+pytest
+allure-pytest

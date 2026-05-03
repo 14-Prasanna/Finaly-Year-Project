@@ -40,7 +40,9 @@ DB_PATH = os.path.join(BASE_DIR, "users.db")
 app.config["SESSION_COOKIE_SAMESITE"] = "None"
 app.config["SESSION_COOKIE_SECURE"] = True
 
-CORS(app, supports_credentials=True, origins=["http://localhost:3000", "http://127.0.0.1:3000"])
+# Allow CORS for deployed frontend and local dev
+frontend_url = os.getenv("FRONTEND_URL", "http://localhost:3000")
+CORS(app, supports_credentials=True, origins=[frontend_url, "http://localhost:3000", "http://127.0.0.1:3000"])
 
 # The custom load_local_env was removed in favor of python-dotenv
 
